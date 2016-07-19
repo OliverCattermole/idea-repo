@@ -1,0 +1,14 @@
+
+.wrapper{
+	margin: 0 auto;
+	width:50%;
+}
+.spacer{
+	padding:20px;
+}
+
+.idea-title{
+	font-size: 1.5em;
+	display:inline-block;
+}
+
