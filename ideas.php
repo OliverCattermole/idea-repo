@@ -6,8 +6,8 @@
 
     <title>Idea Repo</title>
 
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
+    <link rel="stylesheet" href="libraries/bootstrap.min.css">
+    <link rel="stylesheet" href="libraries/bootflat.min.css">
     <link rel="stylesheet" href="libraries/font-awesome-4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
