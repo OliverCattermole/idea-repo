@@ -15,7 +15,16 @@
 <body>
     <div class="container-fluid">
     	<div class="spacer"></div>
+<?php
+      $db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
+      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
+      $stmt = $db->query('SELECT * FROM ideas');
+      $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<?php foreach($results as $value){ ?>
 		<div class="row">
 			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 			<div class="col-lg-6 col-md-8 col-sm-10">
@@ -24,7 +33,9 @@
 			            <h3 class="panel-title">
 			            	<p class="idea-title">
 								<i class="fa fa-font-awesome" aria-hidden="true"></i>         
-				            	<strong>Panel title</strong>
+				            	<strong>
+				            		<?php echo $value['title']; ?>
+				            	</strong>
 				            </p>
 			            </h3>
 			            <button type="button" class="btn btn-primary pull-right hidden-xs">See Details</button>
@@ -32,21 +43,28 @@
 			         <div class="panel-body">
 			         		<div class="col-md-9">
 			         			<p>
-			         				Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo. Luctus arcu, urna praesent at id quisque ac. Arcu es massa vestibulum malesuada, integer vivamus elit eu mauris eus, cum eros quis aliquam wisi. Nulla wisi laoreet ...
+			         				<?php echo $value['desc']; ?>
 			         			</p>
 			         		</div> 
 			         		<div class="col-sm-3 hidden-sm hidden-xs">
-			         			<p>Category</p>
+			         			<p>
+			         				<?php
+			         					$name = $db->query('SELECT name FROM category WHERE pk_id = '.$value['fk_category'])->fetch(PDO::FETCH_ASSOC);
+			         					echo $name['name'];
+			         				?>
+			         			</p>
 			         			<p>Owner</p>
 			         			<p>Department</p>
-			         			<p>Date raised</p>
+			         			<p>
+			         				<?php echo $value['date_raised']; ?>
+			         			</p>
 			         		</div>
 			         </div>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 		</div>
-	    
+<?php }; ?> 
 	 
 
 

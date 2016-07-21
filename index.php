@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 			<div class="col-lg-6 col-md-8 col-sm-10">
-			   <form class="form-horizontal">
+			   <form class="form-horizontal" action="index.php" method="POST">
                   <div class="form-group">
 
                     <label class="col-sm-2 control-label">Title</label>
