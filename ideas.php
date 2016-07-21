@@ -21,31 +21,22 @@
 
 <body>
     <div class="container-fluid">
-    	<div class="spacer"></div>
+    
+    <!-- header -->
+    <div class="spacer"></div>
 
-   	<?php
-   		//if post is non-empty - i.e. we came to this page via form submission
-   		if (count($_POST)>0){ 
+    <?php if($GET['status']='success'){?>
+		<div class="col-lg-3 col-md-2 col-sm-1"></div>
+		<div class="col-lg-6 col-md-8 col-sm-10 alert alert-success alert-dismissable">
+		  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		  <strong>Idea added successfully.</strong>
+		</div>
+		<div class="col-lg-3 col-md-2 col-sm-1"></div>
 
-   			//insert idea into the database using a prepared statement
-	   		$stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :descr, :category, 0, "'.date("Y-m-d H:i:s").'")');
-			$stmt->bindParam(':title', $title, PDO::PARAM_STR);
-			$stmt->bindParam(':descr', $desc, PDO::PARAM_STR);
-			$stmt->bindParam(':category', $category, PDO::PARAM_INT);
-
-			$title = $_POST['title'];
-			$desc = $_POST['description'];
-			$category = $_POST['category'];
-			$stmt->execute();
-   	?>
-   			<div class="spacer"></div>
-			<div class="alert alert-success alert-dismissable">
-			        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-			        <strong>Form submitted.</strong>
-			</div>
-	<?php
-		}; 
-	?>
+		<div class="spacer"></div>
+		<div class="spacer"></div>
+  
+    <?php }; ?>
 
 <?php
 	//fetch ideas from the db

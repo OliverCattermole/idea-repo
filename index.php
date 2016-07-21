@@ -1,3 +1,27 @@
+<?php
+      //if post is non-empty - i.e. we came to this page via form submission
+      if (count($_POST)>0){ 
+        //set up db connection
+        $db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        
+        //insert idea into the database using a prepared statement
+        $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :descr, :category, 0, "'.date("Y-m-d H:i:s").'")');
+        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $stmt->bindParam(':descr', $desc, PDO::PARAM_STR);
+        $stmt->bindParam(':category', $category, PDO::PARAM_INT);
+
+        $title = $_POST['title'];
+        $desc = $_POST['description'];
+        $category = $_POST['category'];
+        $stmt->execute();
+
+        //redirect to ideas page with get param set
+        header('Location: ideas.php?status=success');
+    };
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +41,12 @@
 
       <div class="spacer"></div>
 
+
+
 		<div class="row">
 			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 			<div class="col-lg-6 col-md-8 col-sm-10">
-			   <form action="ideas.php" method="POST" class="form-horizontal">
+			   <form action="index.php" method="POST" class="form-horizontal">
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="title">Title</label>
                     <div class="col-sm-10">
