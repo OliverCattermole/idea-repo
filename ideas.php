@@ -12,19 +12,52 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+<?php
+	//set up db connection
+	$db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+?>
+
 <body>
     <div class="container-fluid">
     	<div class="spacer"></div>
-<?php
-      $db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
-      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-      $stmt = $db->query('SELECT * FROM ideas');
-      $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   	<?php
+   		//if post is non-empty - i.e. we came to this page via form submission
+   		if (count($_POST)>0){ 
+
+   			//insert idea into the database using a prepared statement
+	   		$stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :descr, :category, 0, "'.date("Y-m-d H:i:s").'")');
+			$stmt->bindParam(':title', $title, PDO::PARAM_STR);
+			$stmt->bindParam(':descr', $desc, PDO::PARAM_STR);
+			$stmt->bindParam(':category', $category, PDO::PARAM_INT);
+
+			$title = $_POST['title'];
+			$desc = $_POST['description'];
+			$category = $_POST['category'];
+			$stmt->execute();
+   	?>
+   			<div class="spacer"></div>
+			<div class="alert alert-success alert-dismissable">
+			        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			        <strong>Form submitted.</strong>
+			</div>
+	<?php
+		}; 
+	?>
+
+<?php
+	//fetch ideas from the db
+	//sort by most recent
+	$stmt = $db->query('SELECT * FROM ideas ORDER BY pk_id DESC');
+	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<?php foreach($results as $value){ ?>
+<?php
+	//print the ideas
+	foreach($results as $value){ 
+?>
 		<div class="row">
 			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 			<div class="col-lg-6 col-md-8 col-sm-10">
@@ -49,6 +82,7 @@
 			         		<div class="col-sm-3 hidden-sm hidden-xs">
 			         			<p>
 			         				<?php
+			         					//get the category name using the given id
 			         					$name = $db->query('SELECT name FROM category WHERE pk_id = '.$value['fk_category'])->fetch(PDO::FETCH_ASSOC);
 			         					echo $name['name'];
 			         				?>
