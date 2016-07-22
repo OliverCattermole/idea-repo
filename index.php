@@ -7,7 +7,8 @@
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
         //insert idea into the database using a prepared statement
-        $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :descr, :category, 0, "'.date("Y-m-d H:i:s").'")');
+        $date = date("Y-m-d H:i:s");
+        $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :descr, :category, 0, "'.$date.'")'); 
         $stmt->bindParam(':title', $title, PDO::PARAM_STR);
         $stmt->bindParam(':descr', $desc, PDO::PARAM_STR);
         $stmt->bindParam(':category', $category, PDO::PARAM_INT);
@@ -17,8 +18,12 @@
         $category = $_POST['category'];
         $stmt->execute();
 
+        $stmt = $db->query('SELECT pk_id FROM ideas WHERE date_raised ="'.$date.'"');
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $id = $result['pk_id'];
+
         //redirect to ideas page with get param set
-        header('Location: ideas.php?status=success');
+        header('Location: ideadetails.php?idea='.$id);
     };
 ?>
 
@@ -34,29 +39,20 @@
     <link rel="stylesheet" href="libraries/bootflat.min.css">
 <!--     <link rel="stylesheet" href="libraries/font-awesome.min.css"> -->
     <link rel="stylesheet" href="style.css">
-
-
-      <style type="text/css">
-    html{
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
-    }
-    iframe{
-      position: absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      top:0;
-      border:0;
-    }
-  </style>
 </head>
 
 <body>
     <div class="container-fluid">
 
-      <div class="spacer"></div>
+     <div class="row">
+      <div class="col-lg-3 col-md-2 col-sm-1"></div>
+      <div class="col-lg-6 col-md-8 col-sm-10">
+        <a  class="btn btn-success seeallbutton pull-right"
+            href="ideas.php"
+            >See all ideas</a>
+      </div>
+      <div class="col-lg-3 col-md-2 col-sm-1"></div>
+    </div>
 
 		<div class="row">
 			<div class="col-lg-3 col-md-2 col-sm-1"></div>

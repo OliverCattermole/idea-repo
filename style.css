@@ -18,7 +18,18 @@
 .panel-heading{
 	vertical-align: middle;
 }
+.panel{
+	word-wrap: break-word;
+}
 
+/*expand/collapse all button*/
+.expandbutton{
+	margin:15px;
+}
+
+.seeallbutton{
+	margin:15px 0;
+}
 
 /*submit buttons*/
 .submitbutton{
@@ -37,11 +48,15 @@
 	font-size: 3em;
 }
 .circlemedium{
+	bottom:25px;
+	right:25px;
 	width: 100px;
 	height: 100px;
 	line-height: 100px;
 }
 .circlesmall{
+	bottom:10px;
+	right:10px;
 	width: 75px;
 	height: 75px;
 	line-height: 75px;
