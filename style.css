@@ -7,6 +7,7 @@
 	padding: 20px;
 }
 
+/*ideas*/
 .idea-title{
 	font-size: 1.5em;
 	display:inline;
@@ -16,4 +17,32 @@
 }
 .panel-heading{
 	vertical-align: middle;
+}
+
+
+/*submit buttons*/
+.submitbutton{
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	/*font-size: 2em !important;*/
+	z-index: 1;
+}
+.circle {
+	border-radius: 50%;
+  	white-space: nowrap;
+	text-align: center;
+	background-color: #8CC152; /*green*/
+	color: white;
+	font-size: 3em;
+}
+.circlemedium{
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+}
+.circlesmall{
+	width: 75px;
+	height: 75px;
+	line-height: 75px;
 }

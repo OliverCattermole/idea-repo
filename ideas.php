@@ -8,8 +8,12 @@
 
     <link rel="stylesheet" href="libraries/bootstrap.min.css">
     <link rel="stylesheet" href="libraries/bootflat.min.css">
-    <link rel="stylesheet" href="libraries/font-awesome-4.6.3/css/font-awesome.min.css">
+  <!--   <link rel="stylesheet" href="libraries/font-awesome.min.css"> -->
     <link rel="stylesheet" href="style.css">
+    <script src="app.js">
+    	
+    	
+    </script>
 </head>
 
 <?php
@@ -23,9 +27,31 @@
     <div class="container-fluid">
     
     <!-- header -->
-    <div class="spacer"></div>
+    <div class="spacer">
+    	<button class="btn btn-info" onclick="expandcollapseall();">expand/collapse all</button>
+    </div>
 
-    <?php if($GET['status']='success'){?>
+    <!--submit buttons -->
+    <div class="submitbutton visible-lg">
+	    <a href="index.php" class="btn btn-success">
+	    	<p style="font-size:2em;">Submit new idea</p>
+	    	<p style="font-size:3em">+</p>
+	    </a>
+	</div>
+	<a href="index.php">
+		<div class="submitbutton circle circlemedium hidden-lg hidden-xs">
+		    	<p>+</p>
+		</div>
+	</a>
+	<a href="index.php">
+		<div class="submitbutton circle circlesmall visible-xs">
+		    	<p>+</p>
+		</div>
+	</a>
+
+    <?php 
+    //if the form was submitted successfully
+    if(count($_GET) && $_GET['status']=='success'){?>
 		<div class="col-lg-3 col-md-2 col-sm-1"></div>
 		<div class="col-lg-6 col-md-8 col-sm-10 alert alert-success alert-dismissable">
 		  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -53,7 +79,7 @@
 			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 			<div class="col-lg-6 col-md-8 col-sm-10">
 			   <div class="panel panel-default">
-					<div class="panel-heading clearfix">
+					<div class="panel-heading clearfix" onclick="expand(this)">
 			            <h3 class="panel-title">
 			            	<p class="idea-title">
 								<i class="fa fa-font-awesome" aria-hidden="true"></i>         
@@ -70,6 +96,7 @@
 			         				<?php echo $value['desc']; ?>
 			         			</p>
 			         		</div> 
+			         		<button type="button" class="btn btn-primary visible-xs" style="width:100%">See Details</button>
 			         		<div class="col-sm-3 hidden-sm hidden-xs">
 			         			<p>
 			         				<?php

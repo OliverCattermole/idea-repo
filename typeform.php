@@ -58,49 +58,9 @@
 
       <div class="spacer"></div>
 
-		<div class="row">
-			<div class="col-lg-3 col-md-2 col-sm-1"></div>
-			<div class="col-lg-6 col-md-8 col-sm-10">
-			   <form action="index.php" method="POST" class="form-horizontal">
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label" for="title">Title</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Title" name="title" required>
-                    </div>
-                  </div>
 
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Description</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" placeholder="Description" name="description"></textarea>      
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Category</label>
-                    <div class="col-sm-5">
-                      <select class="form-control" name="category">
-                          <option value="1">testcategory1</option>
-                          <option value="2">testcategory2</option>
-                        </select>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Useful links</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" placeholder="Add links to further reading materials here"></textarea>      
-                    </div>
-                  </div>
-
-                  <button type="submit" class="btn btn-primary pull-right">Submit</button>
-
-                </form>
-			</div>
-			<div class="col-lg-3 col-md-2 col-sm-1"></div>
-		</div>
-	
-
+  <iframe id="typeform-full" width="100%" height="100%" frameborder="0" src="https://matt632.typeform.com/to/NJ7wT7"></iframe>
+  <script type="text/javascript" src="https://s3-eu-west-1.amazonaws.com/share.typeform.com/embed.js"></script>
   </div>
 
     <!-- Bootstrap -->
