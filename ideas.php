@@ -67,44 +67,49 @@
     <?php }; ?>
     <div class="row">
 
+  <div style="padding-left:5px;">
     <div class="filters col-md-2 col-lg-offset-1 hidden-sm hidden-xs">
-		<form>
-			<h5>Categories</h5>
-			<?php 
-				$statement = $db->query('SELECT * FROM category');
-				$categories = $statement->fetchAll(PDO::FETCH_ASSOC);
-				foreach($categories as $category){
-			?>
-				<div class="checkbox">
-				  <label>
-				    <input type="checkbox" value="<?php echo $category['pk_id']; ?>" checked>
-				    	<?php echo $category['name']; ?>
-				  </label>
-				</div>
-			<?php }; ?>
-			<p class="pull-right"><a><u>select all/none</u></a></p>
-			<div class="clearfix"></div>
+		<form method="POST" action="posttest.php">
+			<div>
+				<h5>Categories</h5>
+				<?php 
+					$statement = $db->query('SELECT * FROM category');
+					$categories = $statement->fetchAll(PDO::FETCH_ASSOC);
+					foreach($categories as $category){
+				?>
+					<div class="checkbox">
+					  <label>
+					    <input type="checkbox" name="<?php echo $category['pk_id']; ?>" value="<?php echo $category['pk_id']; ?>" checked>
+					    	<?php echo $category['name']; ?>
+					  </label>
+					</div>
+				<?php }; ?>
+				<p class="pull-right pointer" onclick="selectallornone(this)"><a><u>select all/none</u></a></p>
+				<div class="clearfix"></div>
+			</div>
 
-			<h5>Statuses</h5>
-			<?php 
-				$statement = $db->query('SELECT * FROM status');
-				$statuses = $statement->fetchAll(PDO::FETCH_ASSOC);
-				foreach($statuses as $status){
-			?>
-				<div class="checkbox">
-				  <label>
-				    <input type="checkbox" value="<?php echo $status['pk_id']; ?>" checked>
-				    	<?php echo $status['name']; ?>
-				  </label>
-				</div>
-			<?php }; ?>
-			<p class="pull-right"><a><u>select all/none</u></a></p>
-			<div class="clearfix"></div>
+			<div>
+				<h5>Statuses</h5>
+				<?php 
+					$statement = $db->query('SELECT * FROM status');
+					$statuses = $statement->fetchAll(PDO::FETCH_ASSOC);
+					foreach($statuses as $status){
+				?>
+					<div class="checkbox">
+					  <label>
+					    <input type="checkbox" value="<?php echo $status['pk_id']; ?>" checked>
+					    	<?php echo $status['name']; ?>
+					  </label>
+					</div>
+				<?php }; ?>
+				<p class="pull-right pointer" onclick="selectallornone(this)"><a><u>select all/none</u></a></p>
+				<div class="clearfix"></div>
+			</div>
 
 		  <button type="submit" class="btn btn-default pull-right">Submit</button>
 		</form>
 	</div>
-
+</div>
 <?php
 	//fetch ideas from the db
 	//sort by most recent

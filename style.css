@@ -6,6 +6,9 @@
 .spacer{
 	padding: 20px;
 }
+.pointer{
+	cursor: pointer;
+}
 
 /*ideas*/
 .idea-title{
