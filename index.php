@@ -7,16 +7,18 @@
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
         //insert idea into the database using a prepared statement
-        $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :description, :usecase, :category, 0, NOW())'); 
+        $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :description, :usecase, :category, :status, NOW())'); 
         $stmt->bindParam(':title', $title, PDO::PARAM_STR);
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
         $stmt->bindParam(':usecase', $usecase, PDO::PARAM_STR);
         $stmt->bindParam(':category', $category, PDO::PARAM_INT);
+        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
 
         $title = $_POST['title'];
         $description = $_POST['description'];
         $usecase = $_POST['usecase'];
         $category = $_POST['category'];
+        $status = $_POST['status'];
         $stmt->execute();
 
         $stmt = $db->query('SELECT pk_id FROM ideas WHERE title ="'.$title.'"');
@@ -82,6 +84,22 @@
                               $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                               $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                               $stmt = $db->query('SELECT * FROM category');
+                              $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                              //print the ideas
+                              foreach($results as $value){ 
+                          ?>
+                            <option value="<?php echo $value['pk_id']; ?>"><?php echo $value['name']; ?></option>
+                          <?php }; ?>
+                        </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Status</label>
+                    <div class="col-sm-6">
+                      <select class="form-control" name="status">
+                          <?php
+                              $stmt = $db->query('SELECT * FROM status');
                               $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                               //print the ideas
                               foreach($results as $value){ 

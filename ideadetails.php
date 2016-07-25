@@ -87,7 +87,13 @@
 			         				?>
 			         			</p>
 			         			<p>Owner</p>
-			         			<p>Status</p>
+			         			<p>
+		         				<?php
+		         					//get the category name using the given id
+		         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$value['fk_status'])->fetch(PDO::FETCH_ASSOC);
+		         					echo $name['name'];
+		         				?>
+		         				</p>
 			         			<p>
 			         				<?php echo $value['date_raised']; ?>
 			         			</p>

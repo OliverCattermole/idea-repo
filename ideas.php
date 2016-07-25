@@ -65,71 +65,115 @@
 		<div class="spacer"></div>
   
     <?php }; ?>
+    <div class="row">
+
+    <div class="filters col-md-2 col-md-offset-1 hidden-sm hidden-xs affix">
+		<form>
+			<h5>Categories</h5>
+			<?php 
+				$statement = $db->query('SELECT * FROM category');
+				$categories = $statement->fetchAll(PDO::FETCH_ASSOC);
+				foreach($categories as $category){
+			?>
+				<div class="checkbox">
+				  <label>
+				    <input type="checkbox" value="<?php echo $category['pk_id']; ?>" checked>
+				    	<?php echo $category['name']; ?>
+				  </label>
+				</div>
+			<?php }; ?>
+			<p class="pull-right"><a><u>select all/none</u></a></p>
+			<div class="clearfix"></div>
+
+			<h5>Statuses</h5>
+			<?php 
+				$statement = $db->query('SELECT * FROM status');
+				$statuses = $statement->fetchAll(PDO::FETCH_ASSOC);
+				foreach($statuses as $status){
+			?>
+				<div class="checkbox">
+				  <label>
+				    <input type="checkbox" value="<?php echo $status['pk_id']; ?>" checked>
+				    	<?php echo $status['name']; ?>
+				  </label>
+				</div>
+			<?php }; ?>
+			<p class="pull-right"><a><u>select all/none</u></a></p>
+			<div class="clearfix"></div>
+
+		  <button type="submit" class="btn btn-default pull-right">Submit</button>
+		</form>
+	</div>
 
 <?php
 	//fetch ideas from the db
 	//sort by most recent
 	$stmt = $db->query('SELECT * FROM ideas ORDER BY pk_id DESC');
-	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$ideas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <?php
 	//print the ideas
-	foreach($results as $value){ 
+	$i=0;
+	foreach($ideas as $idea){
+	$i++;
 ?>
-		<div class="row">
-			<div class="col-lg-3 col-md-2 col-sm-1"></div>
-			<div class="col-lg-6 col-md-8 col-sm-10">
+	
+						
+			<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 			   <div class="panel panel-default">
 					<div class="panel-heading clearfix" onclick="expand(this)">
 			            <h3 class="panel-title">
 			            	<p class="idea-title">
 								<i class="fa fa-font-awesome" aria-hidden="true"></i>         
 				            	<strong>
-				            		<?php echo $value['title']; ?>
+				            		<?php echo $idea['title']; ?>
 				            	</strong>
 				            </p>
 			            </h3>
 			            <a type="button" 
 			            	class="btn btn-primary pull-right hidden-xs"
-			            	href="ideadetails.php?idea=<?php echo $value['pk_id']; ?>">
+			            	href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>">
 			            	See Details
 			            </a>
 			         </div>
 			         <div class="panel-body">
 		         		<div class="col-md-9">
 		         			<p>
-		         				<?php echo $value['description']; ?>
+		         				<?php echo $idea['description']; ?>
 		         			</p>
 		         		</div> 
 		         		<a type="button" 
 		         			class="btn btn-primary visible-xs" 
 		         			style="width:100%"
-		         			href="ideadetails.php?idea=<?php echo $value['pk_id']; ?>"
+		         			href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>"
 		         			>See Details
 		         		</a>
 		         		<div class="col-sm-3 hidden-sm hidden-xs">
 		         			<p>
 		         				<?php
 		         					//get the category name using the given id
-		         					$name = $db->query("SELECT name FROM category WHERE pk_id = ".$value['fk_category'])->fetch(PDO::FETCH_ASSOC);
+		         					$name = $db->query("SELECT name FROM category WHERE pk_id = ".$idea['fk_category'])->fetch(PDO::FETCH_ASSOC);
 		         					echo $name['name'];
 		         				?>
 		         			</p>
 		         			<p>Owner</p>
-		         			<p>Status</p>
 		         			<p>
-		         				<?php echo $value['date_raised']; ?>
+		         				<?php
+		         					//get the category name using the given id
+		         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$idea['fk_status'])->fetch(PDO::FETCH_ASSOC);
+		         					echo $name['name'];
+		         				?>
+		         			</p>
+		         			<p>
+		         				<?php echo $idea['date_raised']; ?>
 		         			</p>
 		         		</div>
 			         </div>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 		</div>
 <?php }; ?> 
 	 
-
 
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
