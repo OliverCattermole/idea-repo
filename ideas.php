@@ -99,7 +99,7 @@
 			         <div class="panel-body">
 		         		<div class="col-md-9">
 		         			<p>
-		         				<?php echo $value['desc']; ?>
+		         				<?php echo $value['description']; ?>
 		         			</p>
 		         		</div> 
 		         		<a type="button" 
@@ -112,12 +112,12 @@
 		         			<p>
 		         				<?php
 		         					//get the category name using the given id
-		         					$name = $db->query('SELECT name FROM category WHERE pk_id = '.$value['fk_category'])->fetch(PDO::FETCH_ASSOC);
+		         					$name = $db->query("SELECT name FROM category WHERE pk_id = ".$value['fk_category'])->fetch(PDO::FETCH_ASSOC);
 		         					echo $name['name'];
 		         				?>
 		         			</p>
 		         			<p>Owner</p>
-		         			<p>Department</p>
+		         			<p>Status</p>
 		         			<p>
 		         				<?php echo $value['date_raised']; ?>
 		         			</p>

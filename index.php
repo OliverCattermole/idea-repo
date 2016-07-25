@@ -7,18 +7,19 @@
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
         //insert idea into the database using a prepared statement
-        $date = date("Y-m-d H:i:s");
-        $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :descr, :category, 0, "'.$date.'")'); 
+        $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :description, :usecase, :category, 0, NOW())'); 
         $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-        $stmt->bindParam(':descr', $desc, PDO::PARAM_STR);
+        $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':usecase', $usecase, PDO::PARAM_STR);
         $stmt->bindParam(':category', $category, PDO::PARAM_INT);
 
         $title = $_POST['title'];
-        $desc = $_POST['description'];
+        $description = $_POST['description'];
+        $usecase = $_POST['usecase'];
         $category = $_POST['category'];
         $stmt->execute();
 
-        $stmt = $db->query('SELECT pk_id FROM ideas WHERE date_raised ="'.$date.'"');
+        $stmt = $db->query('SELECT pk_id FROM ideas WHERE title ="'.$title.'"');
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $id = $result['pk_id'];
 
@@ -74,18 +75,27 @@
 
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Category</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-6">
                       <select class="form-control" name="category">
-                          <option value="1">testcategory1</option>
-                          <option value="2">testcategory2</option>
+                          <?php
+                              $db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
+                              $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                              $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                              $stmt = $db->query('SELECT * FROM category');
+                              $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                              //print the ideas
+                              foreach($results as $value){ 
+                          ?>
+                            <option value="<?php echo $value['pk_id']; ?>"><?php echo $value['name']; ?></option>
+                          <?php }; ?>
                         </select>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Useful links</label>
+                    <label class="col-sm-2 control-label">Use Cases</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" placeholder="Add links to further reading materials here"></textarea>      
+                        <textarea class="form-control" rows="5" name="usecase" placeholder="Add links to further reading materials here"></textarea>      
                     </div>
                   </div>
 
