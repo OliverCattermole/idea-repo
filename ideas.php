@@ -67,7 +67,7 @@
     <?php }; ?>
     <div class="row">
 
-    <div class="filters col-md-2 col-md-offset-1 hidden-sm hidden-xs affix">
+    <div class="filters col-md-2 col-lg-offset-1 hidden-sm hidden-xs">
 		<form>
 			<h5>Categories</h5>
 			<?php 
@@ -113,12 +113,9 @@
 ?>
 <?php
 	//print the ideas
-	$i=0;
 	foreach($ideas as $idea){
-	$i++;
 ?>
-	
-						
+		
 			<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 			   <div class="panel panel-default">
 					<div class="panel-heading clearfix" onclick="expand(this)">
@@ -171,9 +168,9 @@
 			         </div>
 				</div>
 			</div>
-		</div>
+		
 <?php }; ?> 
-	 
+	 </div>
 
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
