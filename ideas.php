@@ -25,8 +25,42 @@
 
 	//fetch ideas from the db
 	//sort by most recent
-	$stmt = $db->query('SELECT * FROM ideas ORDER BY pk_id DESC');
-	$ideas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if(!count($_POST)){
+		$stmt = $db->query('SELECT * FROM ideas ORDER BY pk_id DESC');
+		$ideas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}else{
+		$db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+		//fetch ideas from the db
+		//sort by most recen
+
+		$query = "SELECT * FROM ideas WHERE (fk_category=-1";
+
+		$stmt = $db->query('SELECT COUNT(*) FROM category');
+		$numcategories = $stmt->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
+		for($i=0; $i<$numcategories; $i++){
+			if(isset($_POST['category'.$i])){
+				$query = $query." OR fk_category=".$_POST['category'.$i];
+				//echo $_POST['category'.$i];
+			}	
+		}
+		$query = $query.") AND (fk_status=-1";
+		
+
+		$stmt = $db->query('SELECT COUNT(*) FROM status');
+		$numstatuses = $stmt->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
+		for($i=0; $i<$numstatuses; $i++){
+			if(isset($_POST['status'.$i])){
+				$query = $query." OR fk_status=".$_POST['status'.$i];
+			}	
+		}
+		$query = $query.") ORDER BY pk_id DESC";
+
+		$stmt = $db->query($query);
+		$ideas = $stmt->fetchAll(PDO::FETCH_ASSOC);		
+	}
 
 ?>
 
@@ -45,7 +79,7 @@
 			<!-- filter section -->
 			  <div style="padding-left:5px;">
 			    <div class="filters col-md-2 col-lg-offset-1 hidden-sm hidden-xs">
-					<form method="POST" action="posttest.php">
+					<form method="POST" action="ideas.php">
 						<div>
 							<h5>Categories</h5>
 							<?php 
@@ -55,7 +89,10 @@
 							?>
 								<div class="checkbox">
 								  <label>
-								    <input type="checkbox" name="category<?php echo $i; ?>" value="<?php echo $categories[$i]['pk_id']; ?>" checked>
+								    <input 	type="checkbox" 
+								    		name="category<?php echo $i; ?>" 
+								    		value="<?php echo $categories[$i]['pk_id']; ?>" 
+								    		<?php if(isset($_POST['category'.$i])){ echo "checked"; } ?>>
 								    	<?php echo $categories[$i]['name']; ?>
 								  </label>
 								</div>
@@ -73,7 +110,10 @@
 							?>
 								<div class="checkbox">
 								  <label>
-								    <input type="checkbox" name="status<?php echo $i; ?>" value="<?php echo $statuses[$i]['pk_id']; ?>" checked>
+								    <input 	type="checkbox" 
+								    		name="status<?php echo $i; ?>" 
+								    		value="<?php echo $statuses[$i]['pk_id']; ?>" 
+								    		<?php if(isset($_POST['status'.$i])){ echo "checked"; } ?>>
 								    	<?php echo $statuses[$i]['name']; ?>
 								  </label>
 								</div>
