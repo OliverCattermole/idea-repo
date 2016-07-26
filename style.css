@@ -1,4 +1,4 @@
-
+body { background: url('http://thecodeplayer.com/uploads/media/gs.png'); !important; }
 .wrapper{
 	margin: 0 auto;
 	width: 50%;
@@ -8,6 +8,11 @@
 }
 .pointer{
 	cursor: pointer;
+}
+
+/*submission*/
+label{
+	color:gray;
 }
 
 /*ideas*/
@@ -31,6 +36,7 @@
 	padding: 10px 30px;
 	border: 2px solid rgb(230, 233, 237);
 	border-radius:4px;
+	background: white;
 }
 
 /*expand/collapse all button*/
