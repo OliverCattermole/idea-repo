@@ -6,10 +6,10 @@
 
     <title>Idea Repo</title>
 
-    <link rel="stylesheet" href="libraries/bootstrap.min.css">
-    <link rel="stylesheet" href="libraries/bootflat.min.css">
-  <!--   <link rel="stylesheet" href="libraries/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="style.css">    	
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootflat.min.css">
+  <!--   <link rel="stylesheet" href="css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="css/style.css">    	
 </head>
 
 <?php
@@ -17,6 +17,12 @@
 	$db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+    //update status if post is set
+    if (isset($_POST['status'])){
+    	$stmt = $db->query('UPDATE ideas SET fk_status="'.$_POST['status'].'" WHERE pk_id ="'.$_GET['idea'].'"');
+    	$stmt->execute();
+    }
 ?>
 
 <body>
@@ -25,8 +31,10 @@
     <div class="row">
     	<div class="col-lg-3 col-md-2 col-sm-1"></div>
     	<a class="btn btn-success expandbutton"
-    		href="index.php"
-    			>See all ideas</a>
+    		href="
+    			<?php if(isset($_GET['admin']) && $_GET['admin']==true){ echo "admin.php"; }else{ echo "index.php"; }; ?>
+    		"
+    		>See all ideas</a>
     </div>
 
     <?php include 'includes/submitbuttons.php'; ?>
@@ -67,21 +75,49 @@
 			         			</p>
 			         			<p>Owner</p>
 			         			<p>
-		         				<?php
-		         					//get the category name using the given id
-		         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$value['fk_status'])->fetch(PDO::FETCH_ASSOC);
-		         					echo $name['name'];
-		         				?>
-		         				</p>
-			         			<p>
 			         				<?php echo $value['date_raised']; ?>
 			         			</p>
+			         			<p>
+			         				<?php
+
+			         					if(isset($_GET['admin']) && $_GET['admin']==true){
+			         				?>
+			         				<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST">
+			         					<input type="hidden" name="id" value="<?php echo $value['pk_id']; ?>">
+			         					<select class="form-control" name="status">
+					                          <?php
+					                              $stmt = $db->query('SELECT * FROM status');
+					                              $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+					                              //print the ideas
+					                              foreach($results as $statuses){ 
+					                              	
+					                          ?>
+					                            	<option value="<?php echo $statuses['pk_id']; ?>" 
+					                            			<?php if($statuses['pk_id'] == $value['fk_status']){ echo "selected"; } ?> 
+					                            			> 
+					                            				<?php echo $statuses['name']; ?>
+					                            	</option>
+					                          <?php }; ?>
+								        </select>
+								        <button class="btn btn-default" style="margin-top:10px;">Update</button>
+								     </form>
+			         				<?php	
+			         					}else{
+				         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$value['fk_status'])->fetch(PDO::FETCH_ASSOC);
+				         					echo $name['name'];
+			         					};
+			         				?>
+
+				         				
+								    
+					         	</p>
 			         		</div>
 			         		<div class="col-xs-12">
 			         			<p>
 			         				<?php echo $value['usecase']; ?>
 			         			</p>
 			         		</div>
+
 			         </div>
 				</div>
 			</div>

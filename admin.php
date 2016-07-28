@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootflat.min.css">
-  	<link rel="stylesheet" href="css/font-awesome.min.css">
+  <!--   <link rel="stylesheet" href="css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="css/style.css">
 
     <script src="js/ideas.js"></script>
@@ -73,12 +73,13 @@
 	    </div>
 
 		<div class="row">
+			
 
 			<div style="padding-left:5px;">
 			<div class="filters col-md-2 col-lg-offset-1 hidden-sm hidden-xs">
-			<form method="POST" action="index.php">
-			<?php
+			<form method="POST" action="admin.php">
 
+			<?php
 			include 'includes/filterbox.php';
 			include 'includes/submitbuttons.php';
 
@@ -99,7 +100,7 @@
 						            </h3>
 						            <a type="button" 
 						            	class="btn btn-primary pull-right hidden-xs"
-						            	href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>">
+						            	href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>&admin=true">
 						            	See Details
 						            </a>
 						         </div>
@@ -112,7 +113,7 @@
 					         		<a type="button" 
 					         			class="btn btn-primary visible-xs" 
 					         			style="width:100%"
-					         			href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>"
+					         			href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>&admin=true"
 					         			>See Details
 					         		</a>
 					         		<div class="col-sm-3 hidden-sm hidden-xs">
@@ -125,14 +126,15 @@
 					         			</p>
 					         			<p>Owner</p>
 					         			<p>
-					         				<?php echo $idea['date_raised']; ?>
-					         			</p>
-					         			<p>
+					         				
 					         				<?php
 					         					//get the status name using the given id
 					         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$idea['fk_status'])->fetch(PDO::FETCH_ASSOC);
 					         					echo $name['name'];
 					         				?>
+					         			</p>
+					         			<p>
+					         				<?php echo $idea['date_raised']; ?>
 					         			</p>
 					         		</div>
 						         </div>

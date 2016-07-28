@@ -1,7 +1,5 @@
 <!-- filter section -->
-<div style="padding-left:5px;">
-<div class="filters col-md-2 col-lg-offset-1 hidden-sm hidden-xs">
-	<form method="POST" action="index.php">
+
 		<div>
 			<h5>Categories</h5>
 			<?php 
