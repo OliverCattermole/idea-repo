@@ -46,6 +46,10 @@
 
 <!-- multistep form -->
 <form id="msform" action="submit2.php" method="POST">
+<a class="btn btn-success"
+        href="index.php"
+        style="margin-top:-50px;"
+        >See all ideas</a>
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active">Category</li>
@@ -89,13 +93,6 @@
 
 	<!-- <div style="position:; margin-top:50px;"><a class="btn btn-success seeallbutton pull-right" href="index.php">See all ideas</a></div> -->
 </form>
-<!-- <div class="row">
-      <div class="col-lg-3 col-md-2 col-sm-1"></div>
-      <a class="btn btn-success expandbutton"
-        href="index.php"
-        >See all ideas</a>
-    </div> -->
-
 
 <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="js/jquery.easing.min.js" type="text/javascript"></script> 
