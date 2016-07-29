@@ -66,21 +66,46 @@
     <div class="container-fluid">
     
     
-	    <div class="row">
+	    <div class="row visible-sm visible-xs">
 	    	<div class="col-lg-3 col-md-2 col-sm-1"></div>
 	    	<button class="btn btn-success expandbutton" 
 	    			onclick="expandcollapseall();">expand/collapse all</button>
-	    </div>
+	    	<button class="btn btn-success expandbutton" 
+	    			data-toggle="collapse" data-target="#filterscollapse"	
+	    			>
+	    		filters
+	    	</button>
+	    	<div id="filterscollapse" class="collapse">
+				<div class="filters clearfix">
+				<form method="POST" action="index.php">
+
+			<?php
+				include 'includes/filterbox.php';
+			?>	
+				</div>
+
+			</div>
+	   	</div>
 
 		<div class="row">
 			
 
 			<div style="padding-left:5px;">
-			<div class="filters col-md-2 col-lg-offset-1 hidden-sm hidden-xs">
+			<div class="sidebar col-md-2 col-lg-offset-1 hidden-sm hidden-xs">
+			<div class="filters clearfix">
 			<form method="POST" action="admin.php">
 
 			<?php
-			include 'includes/filterbox.php';
+				include 'includes/filterbox.php';
+			?>
+				<button class="btn btn-success" 
+	    			onclick="expandcollapseall();"
+	    			style="margin:10px auto; display:block;">
+	    			expand/collapse all
+	    		</button>
+			</div>
+
+			<?php
 			include 'includes/submitbuttons.php';
 
 				//print the ideas
@@ -92,7 +117,7 @@
 								<div class="panel-heading clearfix" onclick="expand(this)">
 						            <h3 class="panel-title">
 						            	<p class="idea-title">
-											<i class="fa fa-font-awesome" aria-hidden="true"></i>         
+											<?php include 'includes/icon.php'; ?>       
 							            	<strong>
 							            		<?php echo $idea['title']; ?>
 							            	</strong>

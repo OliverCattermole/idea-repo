@@ -43,7 +43,7 @@
 		$idea = $_GET['idea'];
 
 		$stmt = $db->query('SELECT * FROM ideas WHERE pk_id = '.$idea);
-		$value= $stmt->fetch(PDO::FETCH_ASSOC);
+		$idea= $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 		<div class="row">
 			<div class="col-lg-3 col-md-2 col-sm-1"></div>
@@ -52,9 +52,9 @@
 					<div class="panel-heading clearfix" onclick="expand(this)">
 			            <h3 class="panel-title">
 			            	<p class="idea-title">
-								<i class="fa fa-font-awesome" aria-hidden="true"></i>         
+								<?php include 'includes/icon.php'; ?> 
 				            	<strong>
-				            		<?php echo $value['title']; ?>
+				            		<?php echo $idea['title']; ?>
 				            	</strong>
 				            </p>
 			            </h3>
@@ -62,20 +62,20 @@
 			         <div class="panel-body">
 			         		<div class="col-md-9">
 			         			<p>
-			         				<?php echo $value['description']; ?>
+			         				<?php echo $idea['description']; ?>
 			         			</p>
 			         		</div> 
 			         		<div class="col-sm-3">
 			         			<p>
 			         				<?php
 			         					//get the category name using the given id
-			         					$name = $db->query("SELECT name FROM category WHERE pk_id = ".$value['fk_category'])->fetch(PDO::FETCH_ASSOC);
+			         					$name = $db->query("SELECT name FROM category WHERE pk_id = ".$idea['fk_category'])->fetch(PDO::FETCH_ASSOC);
 			         					echo $name['name'];
 			         				?>
 			         			</p>
 			         			<p>Owner</p>
 			         			<p>
-			         				<?php echo $value['date_raised']; ?>
+			         				<?php echo $idea['date_raised']; ?>
 			         			</p>
 			         			<p>
 			         				<?php
@@ -83,7 +83,7 @@
 			         					if(isset($_GET['admin']) && $_GET['admin']==true){
 			         				?>
 			         				<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST">
-			         					<input type="hidden" name="id" value="<?php echo $value['pk_id']; ?>">
+			         					<input type="hidden" name="id" value="<?php echo $idea['pk_id']; ?>">
 			         					<select class="form-control" name="status">
 					                          <?php
 					                              $stmt = $db->query('SELECT * FROM status');
@@ -93,7 +93,7 @@
 					                              	
 					                          ?>
 					                            	<option value="<?php echo $statuses['pk_id']; ?>" 
-					                            			<?php if($statuses['pk_id'] == $value['fk_status']){ echo "selected"; } ?> 
+					                            			<?php if($statuses['pk_id'] == $idea['fk_status']){ echo "selected"; } ?> 
 					                            			> 
 					                            				<?php echo $statuses['name']; ?>
 					                            	</option>
@@ -103,7 +103,7 @@
 								     </form>
 			         				<?php	
 			         					}else{
-				         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$value['fk_status'])->fetch(PDO::FETCH_ASSOC);
+				         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$idea['fk_status'])->fetch(PDO::FETCH_ASSOC);
 				         					echo $name['name'];
 			         					};
 			         				?>
@@ -114,7 +114,7 @@
 			         		</div>
 			         		<div class="col-xs-12">
 			         			<p>
-			         				<?php echo $value['usecase']; ?>
+			         				<?php echo $idea['usecase']; ?>
 			         			</p>
 			         		</div>
 
