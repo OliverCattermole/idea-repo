@@ -1,7 +1,7 @@
 <div class="submitbutton visible-lg">
     <a href="submit2.php" class="btn btn-success">
-    	<p style="font-size:2em;">Submit new idea</p>
-    	<p style="font-size:3em">+</p>
+    	<p style="font-size:1.5em;">Submit new idea</p>
+    	<p style="font-size:2em">+</p>
     </a>
 </div>
 
