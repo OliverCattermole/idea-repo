@@ -13,10 +13,7 @@
 </head>
 
 <?php
-	//set up db connection
-	$db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+	include 'includes/setupdbconn.php';
 
     //update status if post is set
     if (isset($_POST['status'])){

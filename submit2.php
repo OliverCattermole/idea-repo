@@ -2,9 +2,7 @@
       //if post is non-empty - i.e. we came to this page via form submission
       if (count($_POST)>0){ 
         //set up db connection
-        $db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        include 'includes/setupdbconn.php';
 
         //insert idea into the database using a prepared statement
         $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :description, :usecase, :category, 1, NOW())'); 

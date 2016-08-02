@@ -1,4 +1,6 @@
-<?php include 'includes/getideas.php'; ?>
+<?php
+	include 'includes/setupdbconn.php';
+	include 'includes/getideas.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
