@@ -60,9 +60,7 @@
 		<h3 class="fs-subtitle">Pick the category which best fits your idea</h3>
 		<select class="form-control" name="category">
               <?php
-                  $db = new PDO('mysql:host=localhost;dbname=idearepo;', 'root', '');
-                  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                  include 'includes/setupdbconn.php';
                   $stmt = $db->query('SELECT * FROM category');
                   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   //print the ideas
