@@ -1,11 +1,5 @@
 {
 "require": { 
         "ext-mbstring": "*"
-    },
-  "scripts": {
-    "post-install-cmd": [
-      "chmod -R 777 /hashover/pages",
-      ""
-    ]
-  }
+    }
 }
