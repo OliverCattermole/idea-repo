@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "compile": [
+    "post-install-cmd": [
       "chmod -R 777 /hashover/pages",
       ""
     ]
