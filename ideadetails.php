@@ -4,8 +4,10 @@
         //set up db connection
         include 'includes/setupdbconn.php';
 
-        //insert idea into the database using a prepared statement
-        $stmt = $db->prepare('INSERT INTO comments VALUES (NULL, '.$_POST["ideaid"].', '.$_POST["message"].')');
+        $ideaid = $_POST['ideaid'];
+        $message = $_POST['message'];
+
+        $stmt = $db->prepare("INSERT INTO comments VALUES (NULL, $ideaid, $message)");
         $stmt->execute();
         //redirect to ideas page with get param set
         header('Location: ideadetails.php?idea='.$_POST['ideaid']);
