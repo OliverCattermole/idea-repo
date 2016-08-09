@@ -157,7 +157,7 @@
   		<input id="saveForm" name="saveForm" type="submit" value="Submit">
     </div>
 	</div>
-  <input type="hidden" name="ideaid" value="<?php echo $idea ?>">
+  <input type="hidden" name="ideaid" value="<?php echo $idea['pk_id'] ?>">
 </form>
 </div>
 
