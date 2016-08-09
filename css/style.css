@@ -36,12 +36,12 @@ label{
 /*filters*/
 .sidebar{
 	position: fixed;
-	background: white;
 }
 .filters{
 	border: 2px solid rgb(230, 233, 237);
 	border-radius:4px;
 	padding: 10px 30px;
+	background-color: white;
 }
 
 /*expand/collapse all button*/
@@ -64,15 +64,16 @@ label{
 	border-radius: 50%;
   	white-space: nowrap;
 	text-align: center;
-	background-color: #8CC152; /*green*/
+	background-color: #46c37b;
+    border: 1px solid #34a263;
 	color: white;
 	font-size: 3em;
 }
 .circlemedium{
 	bottom:25px;
 	right:25px;
-	width: 100px;
-	height: 100px;
+	width: 75px;
+	height: 75px;
 	line-height: 100px;
 }
 .circlesmall{

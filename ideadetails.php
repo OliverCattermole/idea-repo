@@ -28,7 +28,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootflat.min.css">
   <!--   <link rel="stylesheet" href="css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="css/style.css">    	
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sitebuilder.css">    	
 </head>
 
 <?php
@@ -62,8 +63,7 @@
 		$idea= $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 		<div class="row">
-			<div class="col-lg-3 col-md-2 col-sm-1"></div>
-			<div class="col-lg-6 col-md-8 col-sm-10">
+			<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 			   <div class="panel panel-default">
 					<div class="panel-heading clearfix" onclick="expand(this)">
 			            <h3 class="panel-title">
@@ -137,44 +137,46 @@
 			         </div>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-2 col-sm-1"></div>
 		</div>
 
+	<div  class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+		<h4>Comments</h4>	
+	</div>
 
-<div>
+<?php
+	$stmt = $db->query('SELECT * FROM comments WHERE fk_ideaid = '.$idea['pk_id'].' ORDER BY pk_id ASC');
+	$comments= $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$i=1;
+	foreach($comments as $comment){
+?>
+	<div  class="well col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+
+		<?php echo $i.".";
+				echo "<br>";
+				echo $comment['message'];
+				$i++;
+		?>
+
+	</div>
+
+<?php }; ?>
+
+<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 	<form action="ideadetails.php" method="post">
   <div>
-    <label class="desc" id="title4" for="Field4">
-      Message
-    </label>
   
     <div>
-      <textarea id="Field4" name="message" spellcheck="true" rows="10" cols="50" tabindex="4" required></textarea>
+      <textarea name="message" spellcheck="true" rows="5" style="width:100%" required></textarea>
     </div>
   </div>
   <div>
 		<div>
-  		<input id="saveForm" name="saveForm" type="submit" value="Submit">
+  		<input class="pull-right" name="saveForm" type="submit" value="Submit">
     </div>
 	</div>
   <input type="hidden" name="ideaid" value="<?php echo $idea['pk_id'] ?>">
 </form>
 </div>
-
-<?php
-	$stmt = $db->query('SELECT * FROM comments WHERE fk_ideaid = '.$idea['pk_id']);
-	$comments= $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	foreach($comments as $comment){
-?>
-	<div>
-		<?php echo $comment['pk_id'];
-				echo "<br>";
-				echo $comment['message'];
-		?>
-	</div>
-
-<?php }; ?>
 
 	<?php include 'includes/importscripts.php' ?>
 </body>

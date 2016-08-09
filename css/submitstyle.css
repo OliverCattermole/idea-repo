@@ -88,7 +88,7 @@ body {
 }
 #progressbar li {
 	list-style-type: none;
-	color: white;
+	color: black;
 	text-transform: uppercase;
 	font-size: 9px;
 	width: 33.33%;
@@ -116,7 +116,7 @@ body {
 	background: rgb(230, 233, 237) !important;
 	position: absolute;
 	left: -50%;
-	top: 9px;
+	top: 15px;
 	z-index: -1; /*put it behind the numbers*/
 }
 #progressbar li:first-child:after {
@@ -126,6 +126,6 @@ body {
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.active:before,  #progressbar li.active:after{
-	background: rgb(140, 193, 82);
+	background-color: #46c37b;
 	color: white;
 }
