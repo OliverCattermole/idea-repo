@@ -1,13 +1,17 @@
+
 <?php
       //if post is non-empty - i.e. we came to this page via form submission
       if (count($_POST)>0 && isset($_POST['ideaid'])){ 
         //set up db connection
         include 'includes/setupdbconn.php';
 
+        $stmt = $db->prepare("INSERT INTO comments VALUES (NULL, :id, :message)");
+        $stmt->bindParam(':id', $ideaid, PDO::PARAM_INT);
+        $stmt->bindParam(':message', $message, PDO::PARAM_STR);
+
         $ideaid = $_POST['ideaid'];
         $message = $_POST['message'];
 
-        $stmt = $db->prepare("INSERT INTO comments VALUES (NULL, $ideaid, $message)");
         $stmt->execute();
         //redirect to ideas page with get param set
         header('Location: ideadetails.php?idea='.$_POST['ideaid']);
