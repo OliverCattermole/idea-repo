@@ -168,7 +168,8 @@
 	foreach($comments as $comment){
 		echo $comment['pk_id'];
 		echo "<br>";
-		echo $comment['message']; 	
+		echo $comment['message'];
+		echo "<br>";	
 ?>
 	
 
