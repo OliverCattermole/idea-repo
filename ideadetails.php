@@ -1,6 +1,6 @@
 <?php
       //if post is non-empty - i.e. we came to this page via form submission
-      if (count($_POST)>0){ 
+      if (count($_POST)>0 && isset($_POST['ideaid'])){ 
         //set up db connection
         include 'includes/setupdbconn.php';
 
@@ -144,7 +144,7 @@
     </label>
   
     <div>
-      <textarea id="Field4" name="message" spellcheck="true" rows="10" cols="50" tabindex="4"></textarea>
+      <textarea id="Field4" name="message" spellcheck="true" rows="10" cols="50" tabindex="4" required></textarea>
     </div>
   </div>
   <div>
