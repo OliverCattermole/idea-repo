@@ -136,7 +136,7 @@
 
 
 <div>
-	<form action="">
+	<form action="ideadetails.php" method="post">
   <div>
     <label class="desc" id="title4" for="Field4">
       Message
@@ -155,6 +155,18 @@
 </form>
 </div>
 
+<?php
+	$stmt = $db->query('SELECT * FROM comments WHERE fk_ideaid = '.$idea['pk_id']);
+	$comments= $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	foreach($comments as $comment){
+		echo $comment['pk_id'];
+		echo "<br>";
+		echo $comment['message'];
+?>
+	
+
+<?php }; ?>
 
 	<?php include 'includes/importscripts.php' ?>
 </body>
