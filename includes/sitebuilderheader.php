@@ -78,7 +78,7 @@
     </ul>
     <ul class="nav-header pull-left">
         <li class="header-content">
-            <a class="h5" href="#"><img src="https://gso--c.eu2.visual.force.com/resource/1470673703000/GLBL_SBLD_Images/assets/img/lillylogo_white.png" alt="Lilly Logo" height="35">
+            <a class="h5" href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Home?id=a7Db0000000Caht"><img src="https://gso--c.eu2.visual.force.com/resource/1470673703000/GLBL_SBLD_Images/assets/img/lillylogo_white.png" alt="Lilly Logo" height="35">
             </a>
         </li>
     </ul>
