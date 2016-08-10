@@ -21,9 +21,6 @@
 <body>
     <div class="container-fluid">
     <?php include 'includes/sitebuilderheader.php'; ?>
-
-
-   <div style="width:100%; height:60px"></div>
     	<div class="row visible-sm visible-xs">
 	    	<div class="col-lg-3 col-md-2 col-sm-1"></div>
 	    	<button class="btn btn-success expandbutton" 
