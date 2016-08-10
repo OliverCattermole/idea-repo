@@ -103,7 +103,6 @@
 					         					echo $name['name'];
 					         				?>
 					         			</p>
-					         			<p>Owner</p>
 					         			<p>
 					         				<?php echo $idea['date_raised']; ?>
 					         			</p>
