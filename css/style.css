@@ -28,9 +28,11 @@ label{
 }
 .panel-heading{
 	vertical-align: middle;
+	background-color: rgb(230, 233, 237) !important;
 }
 .panel{
 	word-wrap: break-word;
+	border: 2px solid rgb(230, 233, 237);
 }
 
 /*filters*/
