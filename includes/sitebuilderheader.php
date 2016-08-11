@@ -65,7 +65,7 @@
         </li>
 
         <li>
-            <a class="nav-submenu" href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Release_List?id=a7Db0000000Caht">Core (Private)</a>
+            <a class="nav-submenu" href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Release_List?id=a7Db0000000Caht">Private</a>
             <ul>
                 <li>
                     <a href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Release_List?id=a7Db0000000Caht">Updates</a>
