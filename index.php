@@ -1,6 +1,6 @@
-<?php 
+<?php
 	include 'includes/setupdbconn.php';
-	include 'includes/getideas.php'; 
+	include 'includes/getideas.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/bootflat.min.css">
   	<link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/sitebuilder.css">  
+    <link rel="stylesheet" href="css/sitebuilder.css">
 
     <script src="js/ideas.js"></script>
 </head>
@@ -23,10 +23,10 @@
     <?php include 'includes/sitebuilderheader.php'; ?>
     	<div class="row visible-sm visible-xs">
 	    	<div class="col-lg-3 col-md-2 col-sm-1"></div>
-	    	<button class="btn btn-success expandbutton" 
+	    	<button class="btn btn-success expandbutton"
 	    			onclick="expandcollapseall();">expand/collapse all</button>
-	    	<button class="btn btn-success expandbutton" 
-	    			data-toggle="collapse" data-target="#filterscollapse"	
+	    	<button class="btn btn-success expandbutton"
+	    			data-toggle="collapse" data-target="#filterscollapse"
 	    			>
 	    		filters
 	    	</button>
@@ -36,7 +36,7 @@
 
 			<?php
 				include 'includes/filterbox.php';
-			?>	
+			?>
 				</div>
 
 			</div>
@@ -52,7 +52,7 @@
 			<?php
 				include 'includes/filterbox.php';
 			?>
-				<button class="btn btn-success" 
+				<button class="btn btn-success"
 	    			onclick="expandcollapseall();"
 	    			style="margin:10px auto; display:block;">
 	    			expand/collapse all
@@ -65,7 +65,7 @@
 				//print the ideas
 				foreach($ideas as $idea){
 			?>
-					
+
 						<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 						   <div class="panel panel-default">
 								<div class="panel-heading clearfix" onclick="expand(this)">
@@ -77,7 +77,7 @@
 							            	</strong>
 							            </p>
 						            </h3>
-						            <a type="button" 
+						            <a type="button"
 						            	class="btn btn-primary pull-right hidden-xs"
 						            	href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>">
 						            	See Details
@@ -88,9 +88,9 @@
 					         			<p>
 					         				<?php echo $idea['description']; ?>
 					         			</p>
-					         		</div> 
-					         		<a type="button" 
-					         			class="btn btn-primary visible-xs" 
+					         		</div>
+					         		<a type="button"
+					         			class="btn btn-primary visible-xs"
 					         			style="width:100%"
 					         			href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>"
 					         			>See Details
@@ -106,21 +106,14 @@
 					         			<p>
 					         				<?php echo $idea['date_raised']; ?>
 					         			</p>
-					         			<p>
-					         				<?php
-					         					//get the status name using the given id
-					         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$idea['fk_status'])->fetch(PDO::FETCH_ASSOC);
-					         					echo $name['name'];
-					         				?>
-					         			</p>
 					         		</div>
 						         </div>
 							</div>
 						</div>
-					
-			<?php }; ?> 
+
+			<?php }; ?>
 		</div>
-	    
+
 	</div>
 
 <?php include 'includes/importscripts.php'; ?>

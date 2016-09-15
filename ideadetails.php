@@ -1,7 +1,7 @@
 
 <?php
       //if post is non-empty - i.e. we came to this page via form submission
-      if (count($_POST)>0 && isset($_POST['ideaid'])){ 
+      if (count($_POST)>0 && isset($_POST['ideaid'])){
         //set up db connection
         include 'includes/setupdbconn.php';
 
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/bootflat.min.css">
   <!--   <link rel="stylesheet" href="css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/sitebuilder.css">    	
+    <link rel="stylesheet" href="css/sitebuilder.css">
 </head>
 
 <?php
@@ -56,7 +56,7 @@
 
     <?php include 'includes/submitbuttons.php'; ?>
 
-<?php 
+<?php
 		$idea = $_GET['idea'];
 
 		$stmt = $db->query('SELECT * FROM ideas WHERE pk_id = '.$idea);
@@ -68,7 +68,7 @@
 					<div class="panel-heading clearfix" onclick="expand(this)">
 			            <h3 class="panel-title">
 			            	<p class="idea-title">
-								<?php include 'includes/icon.php'; ?> 
+								<?php include 'includes/icon.php'; ?>
 				            	<strong>
 				            		<?php echo $idea['title']; ?>
 				            	</strong>
@@ -80,7 +80,7 @@
 			         			<p>
 			         				<?php echo $idea['description']; ?>
 			         			</p>
-			         		</div> 
+			         		</div>
 			         		<div class="col-sm-3">
 			         			<p>
 			         				<?php
@@ -92,40 +92,6 @@
 			         			<p>
 			         				<?php echo $idea['date_raised']; ?>
 			         			</p>
-			         			<p>
-			         				<?php
-
-			         					if(isset($_GET['admin']) && $_GET['admin']==true){
-			         				?>
-			         				<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST">
-			         					<input type="hidden" name="id" value="<?php echo $idea['pk_id']; ?>">
-			         					<select class="form-control" name="status">
-					                          <?php
-					                              $stmt = $db->query('SELECT * FROM status');
-					                              $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-					                              //print the ideas
-					                              foreach($results as $statuses){ 
-					                              	
-					                          ?>
-					                            	<option value="<?php echo $statuses['pk_id']; ?>" 
-					                            			<?php if($statuses['pk_id'] == $idea['fk_status']){ echo "selected"; } ?> 
-					                            			> 
-					                            				<?php echo $statuses['name']; ?>
-					                            	</option>
-					                          <?php }; ?>
-								        </select>
-								        <button class="btn btn-default" style="margin-top:10px;">Update</button>
-								     </form>
-			         				<?php	
-			         					}else{
-				         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$idea['fk_status'])->fetch(PDO::FETCH_ASSOC);
-				         					echo $name['name'];
-			         					};
-			         				?>
-
-				         				
-								    
-					         	</p>
 			         		</div>
 			         		<div class="col-xs-12">
 			         			<p>
@@ -139,7 +105,7 @@
 		</div>
 
 	<div  class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-		<h4>Comments</h4>	
+		<h4>Comments</h4>
 	</div>
 
 <?php
@@ -163,7 +129,7 @@
 <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 	<form action="ideadetails.php" method="post">
   <div>
-  
+
     <div>
       <textarea name="message" spellcheck="true" rows="5" style="width:100%" required></textarea>
     </div>

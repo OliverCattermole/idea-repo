@@ -65,15 +65,7 @@
         </li>
 
         <li>
-            <a class="nav-submenu" href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Release_List?id=a7Db0000000Caht">Private</a>
-            <ul>
-                <li>
-                    <a href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Release_List?id=a7Db0000000Caht">Updates</a>
-                </li>
-                <li>
-                    <a href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Page_01?id=a7Db0000000Caht&amp;content=a7Ab0000000GmmK">Document Library</a>
-                </li>
-            </ul>
+            <a href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Home?id=a7Db00000008OJp">Private</a>
         </li>
     </ul>
     <ul class="nav-header pull-left">
