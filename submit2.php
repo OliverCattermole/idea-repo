@@ -1,11 +1,11 @@
 <?php
       //if post is non-empty - i.e. we came to this page via form submission
-      if (count($_POST)>0){ 
+      if (count($_POST)>0){
         //set up db connection
         include 'includes/setupdbconn.php';
 
         //insert idea into the database using a prepared statement
-        $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :description, :usecase, :category, 1, NOW())'); 
+        $stmt = $db->prepare('INSERT INTO ideas VALUES (NULL, :title, :description, :usecase, :category, 1, NOW())');
         $stmt->bindParam(':title', $title, PDO::PARAM_STR);
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
         $stmt->bindParam(':usecase', $usecase, PDO::PARAM_STR);
@@ -38,7 +38,7 @@
 <!--     <link rel="stylesheet" href="libraries/font-awesome.min.css"> -->
     	<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/submitstyle.css">
-        <link rel="stylesheet" href="css/sitebuilder.css">  
+        <link rel="stylesheet" href="css/sitebuilder.css">
 
 
 	</head>
@@ -66,7 +66,7 @@
                   $stmt = $db->query('SELECT * FROM category');
                   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   //print the ideas
-                  foreach($results as $value){ 
+                  foreach($results as $value){
               ?>
                 <option value="<?php echo $value['pk_id']; ?>"><?php echo $value['name']; ?></option>
               <?php }; ?>
@@ -84,7 +84,7 @@
 		<h2 class="fs-title">Describe your idea</h2>
 		<h3 class="fs-subtitle">Add some detail here</h3>
 		<textarea class="form-control" rows="5" placeholder="Description" name="description"></textarea>
-		<textarea class="form-control" rows="5" name="usecase" placeholder="Optionally give a sample use case for your app"></textarea>
+		<textarea style="display:none;" class="form-control" rows="5" name="usecase" placeholder="Optionally give a sample use case for your app"></textarea>
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 		<input type="submit" name="submit" class="submit action-button" value="Submit" />
 	</fieldset>
@@ -93,7 +93,7 @@
 </form>
 
 <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="js/jquery.easing.min.js" type="text/javascript"></script> 
+<script src="js/jquery.easing.min.js" type="text/javascript"></script>
 <script src="js/submit.js"></script>
 </body>
 </html>
