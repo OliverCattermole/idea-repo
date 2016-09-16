@@ -57,15 +57,18 @@
         </li>
 
         <li>
-            <a href="https://lctportal-idea-repo.herokuapp.com/">Forum</a>
+          <a href="https://lctportal-idea-repo.herokuapp.com/">Public Forum</a>
         </li>
 
         <li>
-            <a href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Blog_List?id=a7Db0000000Caht">Blog</a>
+          <a href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Blog_List?id=a7Db0000000Caht">Blog</a>
         </li>
 
         <li>
-            <a href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Home?id=a7Db00000008OJp">Private</a>
+          <a href="https://lct-private-forum.herokuapp.com/">Private Forum</a>
+        </li>
+        <li>
+          <a href="https://gso--c.eu2.visual.force.com/apex/GLBL_SBLD_Page_01?id=a7Db00000008OJp&content=a7Ab00000004CAu">Shared Files</a>
         </li>
     </ul>
     <ul class="nav-header pull-left">
