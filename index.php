@@ -101,6 +101,7 @@
 					         					//get the category name using the given id
 					         					$name = $db->query("SELECT name FROM category WHERE pk_id = ".$idea['fk_category'])->fetch(PDO::FETCH_ASSOC);
 					         					echo $name['name'];
+														//hihihi
 					         				?>
 					         			</p>
 					         			<p>
