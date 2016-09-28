@@ -82,6 +82,9 @@
 						            	href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>">
 						            	See Details
 						            </a>
+												<button type="button" class="btn btn-default btn-sm">
+													<span class="glyphicon glyphicon-chevron-up"></span> "1"
+												</button>
 						         </div>
 						         <div class="panel-body">
 					         		<div class="col-md-9">
@@ -95,6 +98,9 @@
 					         			href="ideadetails.php?idea=<?php echo $idea['pk_id']; ?>"
 					         			>See Details
 					         		</a>
+											<button type="button" class="btn btn-default btn-sm">
+												<span class="glyphicon glyphicon-chevron-up"></span> "1"
+											</button>
 					         		<div class="col-sm-3 hidden-sm hidden-xs">
 					         			<p>
 					         				<?php
