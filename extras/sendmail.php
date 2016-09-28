@@ -1,30 +1,23 @@
 <?php
 // multiple recipients
-$to  = 'dean_matt@network.lilly.com' . ', '; // note the comma
-//$to .= 'wez@example.com';
+$to  = 'skellon_lauren@network.lilly.com' . ', '; // note the comma
+$to .= 'dean_matt@network.lilly.com' . ', ';
+$to .= 'durafe_lay@network.lilly.com' . ', ';
+$to .= 'cattermole_ollie@network.lilly.com';
 
 // subject
-$subject = 'Birthday Reminders for August';
+$subject = 'New LCT Forum Question Submitted';
 
 // message
 $message = '
 <html>
 <head>
-  <title>Birthday Reminders for August</title>
+  <title>New Forum Question Submitted</title>
 </head>
 <body>
-  <p>Here are the birthdays upcoming in August!</p>
-  <table>
-    <tr>
-      <th>Person</th><th>Day</th><th>Month</th><th>Year</th>
-    </tr>
-    <tr>
-      <td>Joe</td><td>3rd</td><td>August</td><td>1970</td>
-    </tr>
-    <tr>
-      <td>Sally</td><td>17th</td><td>August</td><td>1973</td>
-    </tr>
-  </table>
+  <p>Someone has submitted a new question, please visit the Forum to review.</p>
+  <p>' . echo $title; . '</p>
+  <p>' . echo $description; . '</p>
 </body>
 </html>
 ';

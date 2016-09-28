@@ -23,7 +23,7 @@
 
         //send email notification
         //include 'sendmail.php';
-
+        include 'includes/sendmail.php';
 
         //redirect to ideas page with get param set
         header('Location: ideadetails.php?idea='.$id);
