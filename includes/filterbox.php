@@ -21,7 +21,7 @@
 						<div class="clearfix"></div>
 					</div>
 
-					<div style="display:none;">
+					<div>
 						<h5>Statuses</h5>
 						<?php
 							$statement = $db->query('SELECT * FROM status');
