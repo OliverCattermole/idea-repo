@@ -106,6 +106,14 @@
 					         			<p>
 					         				<?php echo $idea['date_raised']; ?>
 					         			</p>
+												-					         			<p>
+					         				<?php
+ 			         					//get the status name using the given id
+					         					$name = $db->query("SELECT name FROM status WHERE pk_id = ".$idea['fk_status'])->fetch(PDO::FETCH_ASSOC);
+					         					echo $name['name'];
+					         				?>
+					         			</p>  
+
 					         		</div>
 						         </div>
 							</div>
